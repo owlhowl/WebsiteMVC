@@ -23,14 +23,21 @@
         {
         <div class="card mb-3">
             <div class="card-header">
-                <h5 class="my-0 fw-normal">@post.Title</h5>
+                <h5 class="my-0 mt-1 fw-normal"><b>@post.Title</b></h5>
                 <span class="text-muted" style="font-size: 14px;">@post.Date.ToShortDateString() в @post.Date.ToShortTimeString()</span>
             </div>
-            <div class="card-body py-3" style="max-height: 200px;">
-                <p>
-                    @post.Content
+            <div class="card-body" style="max-height: 500px;">
+                <p style="display: -webkit-box; -webkit-line-clamp: 15; -webkit-box-orient: vertical; overflow: hidden; margin-left: 5px;">
+                    @Html.Raw(post.Content.Replace("\n", "<br>"))
                 </p>
-                <a asp-controller="Blog" asp-action="ViewPost" asp-route-id="@post.Id" type="button" class="btn btn-outline-secondary">Читать полностью</a>
+                <div>
+                    <a asp-controller="Blog" asp-action="ViewPost" asp-route-id="@post.Id" type="button" class="btn btn-outline-secondary">Читать полностью</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-controller="Blog" asp-action="EditPost" asp-route-id="@post.Id" class="text-muted p-3">Редактировать</a>
+                    <a asp-controller="Blog" asp-action="DeletePost" asp-route-id="@post.Id" class="text-muted p-1">Удалить</a>
+                }
+                </div>
             </div>
         </div>
     }

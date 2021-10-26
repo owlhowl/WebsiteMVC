@@ -22,5 +22,9 @@ namespace WebsiteMVC.Controllers
         {
             return View();
         }
+        public ViewResult About()
+        {
+            return View();
+        }
     }
 }

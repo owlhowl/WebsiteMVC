@@ -1,26 +1,26 @@
 ﻿@model WebsiteMVC.Models.BlogPost
 @{
-    ViewData["Title"] = "Новая запись";
+    ViewData["Title"] = "Редактирование записи";
 }
 
 <div>
     <h1 class="text-center">
-        Новая запись
+        Редактирование записи
     </h1>
-    <form asp-controller="Blog" asp-action="AddPost">
+    <form asp-controller="Blog" asp-action="EditPost">
         <div class="mb-3">
             <label asp-for="Title" class="form-label">Заголовок</label>
-            <input asp-for="Title" autocomplete="off" style="font-size: 20px;" class="form-control" />
+            <input asp-for="Title" style="font-size: 20px;" class="form-control" value="@Model.Title" />
             <span class="text-danger" asp-validation-for="Title"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Content" class="form-label">Содержание</label>
             <span class="text-muted" style="font-size: 12px; margin-left: 10px;">можно использовать HTML-теги</span>
-            <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+            <textarea asp-for="Content" class="form-control" rows="10">@Model.Content</textarea>
             <span class="text-danger" asp-validation-for="Content"></span>
         </div>
         <div class="col-md-3 col-12">
-            <button class="w-100 btn btn-dark mt-3" type="submit">Опубликовать</button>
+            <button class="w-100 btn btn-dark mt-3" type="submit">Сохранить</button>
         </div>
     </form>
 </div>
