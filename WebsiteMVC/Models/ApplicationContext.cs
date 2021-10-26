@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace WebsiteMVC.Models
 {
@@ -11,7 +12,7 @@ namespace WebsiteMVC.Models
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -19,9 +20,9 @@ namespace WebsiteMVC.Models
         {
             modelBuilder.Entity<BlogPost>().HasData(new BlogPost[]
             {
-                new BlogPost { Id = 1, Title = "Заголовок статьи 1", Content = "Содержание статьи 1"},
-                new BlogPost { Id = 2, Title = "Заголовок статьи 2", Content = "Содержание статьи 2"},
-                new BlogPost { Id = 3, Title = "Заголовок статьи 3", Content = "Содержание статьи 3"},
+                new BlogPost { Id = 1, Title = "Заголовок статьи 1", Content = "Содержание статьи 1", Date = DateTime.Now},
+                new BlogPost { Id = 2, Title = "Заголовок статьи 2", Content = "Содержание статьи 2", Date = DateTime.Now},
+                new BlogPost { Id = 3, Title = "Заголовок статьи 3", Content = "Содержание статьи 3", Date = DateTime.Now},
             });
 
             Role admin = new Role() { Id = 1, Name = "admin" };

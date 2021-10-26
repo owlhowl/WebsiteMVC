@@ -4,6 +4,41 @@
     ViewData["Title"] = "Блог";
 }
 
-<p>
-    Здесь будет отображаться список записей в блоге.
-</p>
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        <h1 class="mb-3 text-center">
+            Блог
+        </h1>
+    </div>
+</div>
+<div class="row">
+    @if (User.IsInRole("admin"))
+    {
+        <div class="mb-3">
+            <a type="button" asp-controller="Blog" asp-action="AddPost" class="btn btn-dark">Добавить запись</a>
+        </div>
+    }
+    <div class="col-md-8 col-12">
+        @foreach (WebsiteMVC.Models.BlogPost post in ((IEnumerable<WebsiteMVC.Models.BlogPost>)Model.AllPosts).Reverse())
+        {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="my-0 fw-normal">@post.Title</h5>
+                <span class="text-muted" style="font-size: 14px;">@post.Date.ToShortDateString() в @post.Date.ToShortTimeString()</span>
+            </div>
+            <div class="card-body py-3" style="max-height: 200px;">
+                <p>
+                    @post.Content
+                </p>
+                <a asp-controller="Blog" asp-action="ViewPost" asp-route-id="@post.Id" type="button" class="btn btn-outline-secondary">Читать полностью</a>
+            </div>
+        </div>
+    }
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12">
+        <figure class="figure" style="border: 1px #e0e0e0 solid; padding: 10px; border-radius: 5px;">
+            <img src="~/img/seele.jpg" class="figure-img img-fluid" alt="Logo big">
+            <figcaption class="figure-caption">Здесь могла быть ваша реклама</figcaption>
+        </figure>
+    </div>
+</div>

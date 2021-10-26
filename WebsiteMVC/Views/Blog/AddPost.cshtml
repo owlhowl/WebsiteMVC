@@ -1,0 +1,21 @@
+﻿@model WebsiteMVC.Models.BlogPost
+@{
+    ViewData["Title"] = "Новая запись";
+}
+
+<div>
+    <h1 class="text-center">
+        Новая запись
+    </h1>
+    <form asp-controller="Blog" asp-action="AddPost">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Заголовок</label>
+            <input asp-for="Title" style="font-size: 20px;" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Content" class="form-label">Содержание</label>
+            <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+        </div>
+        <button class="w-25 btn btn-dark mt-3" type="submit">Опубликовать</button>
+    </form>
+</div>

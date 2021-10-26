@@ -1,0 +1,40 @@
+﻿@model WebsiteMVC.Models.BlogPost
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="row">
+    <h1 class="text-center col-md-8">
+        @Model.Title
+    </h1>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @Model.Content
+        </p>
+        <p class="text-muted">
+            Опубликовано @Model.Date.ToShortDateString() в @Model.Date.ToShortTimeString()
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h4>Читайте также</h4>
+        @{ 
+            int i = 0;
+            foreach (WebsiteMVC.Models.BlogPost post in ((IEnumerable<WebsiteMVC.Models.BlogPost>)ViewBag.Posts).Reverse())
+            {
+                <div style="border: 1px solid #e0e0e0; border-radius: 5px; margin-bottom: 15px;">
+                    <a asp-controller="Blog" asp-action="ViewPost" asp-route-id="@post.Id" class="link-dark"><h5 style="padding-top: 10px; padding-left: 15px; padding-right: 15px;">@post.Title</h5></a>
+                    <hr style="color: #a0a0a0;">
+                    <p style="padding-left: 15px; padding-right: 15px;">@post.Content</p>
+                    <p class="text-muted" style="font-size: 12px; padding-left: 15px;">@post.Date.ToShortDateString() в @post.Date.ToShortTimeString()</p>
+                </div>
+                if (i < 9)
+                    i++;
+                else
+                    break;
+            }
+        }
+    </div>
+</div>
